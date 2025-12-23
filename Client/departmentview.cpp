@@ -12,3 +12,9 @@ DepartmentView::~DepartmentView()
 {
     delete ui;
 }
+
+void DepartmentView::on_btAdd_clicked()
+{
+    emit goDepartmentEditView();
+}
+

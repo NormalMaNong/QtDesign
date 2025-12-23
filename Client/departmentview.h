@@ -17,6 +17,12 @@ public:
 
 private:
     Ui::DepartmentView *ui;
+
+signals:
+    void goDepartmentEditView();
+
+private slots:
+    void on_btAdd_clicked();
 };
 
 #endif // DEPARTMENTVIEW_H

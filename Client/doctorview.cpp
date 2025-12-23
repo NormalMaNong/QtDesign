@@ -12,3 +12,9 @@ DoctorView::~DoctorView()
 {
     delete ui;
 }
+
+void DoctorView::on_btAdd_clicked()
+{
+    emit goDoctorEditView();
+}
+

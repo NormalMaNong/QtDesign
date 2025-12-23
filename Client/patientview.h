@@ -17,6 +17,11 @@ public:
 
 private:
     Ui::PatientView *ui;
+
+signals:
+    void goPatientEditView();
+private slots:
+    void on_btAdd_clicked();
 };
 
 #endif // PATIENTVIEW_H

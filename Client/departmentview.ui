@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>科室管理</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
@@ -19,7 +19,7 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
-        <widget class="QLineEdit" name="txtSearch_2">
+        <widget class="QLineEdit" name="txtSearch">
          <property name="placeholderText">
           <string>请输入名称进行查询</string>
          </property>
@@ -48,7 +48,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="btAdd_2">
+        <widget class="QPushButton" name="btAdd">
          <property name="text">
           <string>添加</string>
          </property>

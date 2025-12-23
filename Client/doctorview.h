@@ -17,6 +17,12 @@ public:
 
 private:
     Ui::DoctorView *ui;
+
+signals:
+    void goDoctorEditView();
+
+private slots:
+    void on_btAdd_clicked();
 };
 
 #endif // DOCTORVIEW_H

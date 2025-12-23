@@ -17,7 +17,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QPushButton" name="btBack_2">
+      <widget class="QPushButton" name="btBack">
        <property name="text">
         <string/>
        </property>
@@ -41,7 +41,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLabel" name="labelTitle_2">
+      <widget class="QLabel" name="labelTitle">
        <property name="text">
         <string/>
        </property>
@@ -61,7 +61,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="btLogout_2">
+      <widget class="QPushButton" name="btLogout">
        <property name="text">
         <string/>
        </property>

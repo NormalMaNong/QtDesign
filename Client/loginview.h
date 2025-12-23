@@ -17,6 +17,12 @@ public:
 
 private:
     Ui::LoginView *ui;
+
+signals:
+    void loginSuccess();
+    void loginFailed();
+private slots:
+    void on_btSignUp_clicked();
 };
 
 #endif // LOGINVIEW_H

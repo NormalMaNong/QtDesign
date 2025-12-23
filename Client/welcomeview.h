@@ -17,6 +17,15 @@ public:
 
 private:
     Ui::WelcomeView *ui;
+
+signals:
+    void goDepartmentView();
+    void goDoctorView();
+    void goPatientView();
+private slots:
+    void on_btDepartment_clicked();
+    void on_btDoctor_clicked();
+    void on_btPatient_clicked();
 };
 
 #endif // WELCOMEVIEW_H
