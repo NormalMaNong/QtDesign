@@ -2,6 +2,7 @@
 #define LOGINVIEW_H
 
 #include <QWidget>
+#include "chatclient.h"
 
 namespace Ui {
 class LoginView;
@@ -18,11 +19,19 @@ public:
 private:
     Ui::LoginView *ui;
 
+    ChatClient *m_chatClient;
+
+    bool loginFlag = false;
+
 signals:
     void loginSuccess();
     void loginFailed();
 private slots:
     void on_btSignUp_clicked();
+
+    void connectToServer();
+
+    void jsonReceived(const QJsonObject &docObj);
 };
 
 #endif // LOGINVIEW_H
