@@ -19,6 +19,7 @@ public:
     }
 
     QString userLogin(QString userName, QString password);
+    QString userRegister(QString userName);
 
 private:
     explicit IDataBase(QObject *parent = nullptr);
@@ -36,8 +37,14 @@ public:
     bool submitPatientEdit();
     void revertPatientEdit();
 
+    bool initUserModel();
+    int addNewUser();
+    bool submitUserEdit();
+
     QSqlTableModel *patientTabModle;
+    QSqlTableModel *userTabModle;
     QItemSelectionModel *thePatientSelection;
+    QItemSelectionModel *theUserSelection;
 signals:
 
 private:

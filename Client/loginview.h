@@ -23,6 +23,10 @@ private:
 
     bool loginFlag = false;
 
+    bool logonFlag = false;
+
+    QString type;
+
 signals:
     void loginSuccess();
     void loginFailed();
@@ -32,6 +36,9 @@ private slots:
     void connectToServer();
 
     void jsonReceived(const QJsonObject &docObj);
+    void on_btSignIn_clicked();
+
+
 };
 
 #endif // LOGINVIEW_H

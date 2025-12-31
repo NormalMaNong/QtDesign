@@ -5,6 +5,7 @@
 #include <QTcpServer>
 #include "serverworker.h"
 
+
 class ChatServer : public QTcpServer
 {
     Q_OBJECT
@@ -15,6 +16,10 @@ protected:
     void incomingConnection(qintptr socketDescriptor) override;
     QVector<ServerWorker *>m_clients;
     bool validateUser(const QString &username, const QString &password);
+    bool validateUserName(const QString &username);
+    void Register(const QString &username, const QString &password);
+    bool registerFlag = false;
+
 signals:
     void logMessage(const QString &msg);
 
