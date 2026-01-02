@@ -30,13 +30,6 @@ private:
 
     void ininDataBase();
 public:
-    bool initPatientModel();
-    int addNewPatient();
-    bool searchPatient(QString filter);
-    bool deleteCurrentPatient();
-    bool submitPatientEdit();
-    void revertPatientEdit();
-
     bool initUserModel();
     int addNewUser();
     bool submitUserEdit();
