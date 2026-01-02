@@ -24,6 +24,7 @@ private slots:
 private:
     Ui::PatientEditView *ui;
     QDataWidgetMapper *dataMapper;
+    void calculateAge();
 
 signals:
     void goPreviousView();

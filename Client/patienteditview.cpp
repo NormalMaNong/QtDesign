@@ -3,6 +3,7 @@
 #include <QSqlTableModel>
 #include "idatabase.h"
 #include <QDebug>
+#include <QMessageBox>
 
 PatientEditView::PatientEditView(QWidget *parent, int index)
     : QWidget(parent)
@@ -36,6 +37,15 @@ PatientEditView::~PatientEditView()
 
 void PatientEditView::on_btSave_clicked()
 {
+    if(ui->dbEditIDCard->text().length() != 18){
+        QMessageBox::warning(this, tr("警告"), tr("身份证号必须为18位！"));
+        return;
+    }
+    if(ui->dbEditMobile->text().length() != 11){
+        QMessageBox::warning(this, tr("警告"), tr("手机号必须为11位！"));
+        return;
+    }
+    calculateAge();
     if (!dataMapper->submit()) {
         qDebug() << "提交到模型失败";
         return;
@@ -52,5 +62,20 @@ void PatientEditView::on_btCancel_clicked()
 {
     IDataBase::getInstance().revertPatientEdit();
     emit goPreviousView();
+}
+
+void PatientEditView::calculateAge()
+{
+    QDate birthDate = ui->dbDateEditDOB->date();
+    QDate currentDate = QDate::currentDate();
+    int age = currentDate.year() - birthDate.year();
+    // 如果今年还没过生日，年龄减1
+    if (currentDate.month() < birthDate.month() ||
+        (currentDate.month() == birthDate.month() &&
+         currentDate.day() < birthDate.day())) {
+        age--;
+    }
+
+    ui->dbEditAge->setText(QString::number(age));
 }
 
