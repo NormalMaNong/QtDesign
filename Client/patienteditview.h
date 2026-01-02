@@ -12,7 +12,7 @@ class PatientEditView : public QWidget
     Q_OBJECT
 
 public:
-    explicit PatientEditView(QWidget *parent = nullptr);
+    explicit PatientEditView(QWidget *parent = nullptr, int index = 0);
     ~PatientEditView();
 
 private:

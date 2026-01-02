@@ -70,9 +70,9 @@ void MasterView::goPatientView()
     connect(patientView, SIGNAL(goPatientEditView()), this, SLOT(goPatientEditView()));
 }
 
-void MasterView::goPatientEditView()
+void MasterView::goPatientEditView(int rowNo)
 {
-    patientEditView = new PatientEditView(this);
+    patientEditView = new PatientEditView(this,rowNo);
     pushWidgetToStackView(patientEditView);
     connect(patientEditView, SIGNAL(goPreviousView()), this, SLOT(goPreviousView()));
 }

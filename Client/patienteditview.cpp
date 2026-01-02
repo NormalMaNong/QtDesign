@@ -1,7 +1,7 @@
 #include "patienteditview.h"
 #include "ui_patienteditview.h"
 
-PatientEditView::PatientEditView(QWidget *parent)
+PatientEditView::PatientEditView(QWidget *parent, int index)
     : QWidget(parent)
     , ui(new Ui::PatientEditView)
 {

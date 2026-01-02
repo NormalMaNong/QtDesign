@@ -1,11 +1,24 @@
 #include "patientview.h"
 #include "ui_patientview.h"
+#include "idatabase.h"
 
 PatientView::PatientView(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::PatientView)
 {
     ui->setupUi(this);
+
+    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableView->setAlternatingRowColors(true);
+
+
+    IDataBase &iDatabase = IDataBase::getInstance();
+    if(iDatabase.initPatientModel()){
+        ui->tableView->setModel(iDatabase.patientTabModle);
+        ui->tableView->setSelectionModel(iDatabase.thePatientSelection);
+    }
 }
 
 PatientView::~PatientView()
