@@ -28,7 +28,8 @@ PatientView::~PatientView()
 
 void PatientView::on_btAdd_clicked()
 {
-    emit goPatientEditView();
+    int currow = IDataBase::getInstance().addNewPatient();
+    emit goPatientEditView(currow);
 }
 
 
@@ -42,5 +43,12 @@ void PatientView::on_btSearch_clicked()
 void PatientView::on_btDelete_clicked()
 {
     IDataBase::getInstance().deleteCurrentPatient();
+}
+
+
+void PatientView::on_btEdit_clicked()
+{
+    QModelIndex curIndex = IDataBase::getInstance().thePatientSelection->currentIndex();
+    emit goPatientEditView(curIndex.row());
 }
 
