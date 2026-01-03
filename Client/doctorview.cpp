@@ -35,13 +35,14 @@ void DoctorView::on_btAdd_clicked()
 
 void DoctorView::on_btSearch_clicked()
 {
-
+    QString filter = QString("name like '%%1%'").arg(ui->txtSearch->text());
+    IDataBase::getInstance().searchDoctor(filter);
 }
 
 
 void DoctorView::on_btDelete_clicked()
 {
-
+    IDataBase::getInstance().deleteCurrentDoctor();
 }
 
 

@@ -148,6 +148,20 @@ int IDataBase::addNewDoctor()
     return curIndex.row();
 }
 
+bool IDataBase::searchDoctor(QString filter)
+{
+    doctorTabModle->setFilter(filter);
+    return doctorTabModle->select();
+}
+
+bool IDataBase::deleteCurrentDoctor()
+{
+    QModelIndex curIndex = theDoctorSelection->currentIndex();
+    doctorTabModle->removeRow(curIndex.row());
+    doctorTabModle->submitAll();
+    doctorTabModle->select();
+}
+
 QString IDataBase::userLogin(QString userName, QString password)
 {
     QSqlQuery query;
