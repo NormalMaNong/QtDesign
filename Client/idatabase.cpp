@@ -107,6 +107,21 @@ bool IDataBase::deleteCurrentDepartment()
     departmentTabModle->select();
 }
 
+bool IDataBase::submitDepartmentEdit()
+{
+    bool success = departmentTabModle->submitAll();
+    if (!success) {
+        qDebug() << "提交失败：" << database.lastError().text();
+        qDebug() << "模型错误：" << departmentTabModle->lastError().text();
+    }
+    return success;
+}
+
+void IDataBase::revertDepartmentEdit()
+{
+    departmentTabModle->revertAll();
+}
+
 QString IDataBase::userLogin(QString userName, QString password)
 {
     QSqlQuery query;

@@ -2,6 +2,7 @@
 #define DEPARTMENTEDITVIEW_H
 
 #include <QWidget>
+#include <QDataWidgetMapper>
 
 namespace Ui {
 class DepartmentEditView;
@@ -15,8 +16,17 @@ public:
     explicit DepartmentEditView(QWidget *parent = nullptr, int index = 0);
     ~DepartmentEditView();
 
+private slots:
+    void on_btSave_clicked();
+
+    void on_btCancel_clicked();
+
 private:
     Ui::DepartmentEditView *ui;
+    QDataWidgetMapper *dataMapper;
+
+signals:
+    void goPreviousView();
 };
 
 #endif // DEPARTMENTEDITVIEW_H

@@ -45,3 +45,10 @@ void DepartmentView::on_btDelete_clicked()
     IDataBase::getInstance().deleteCurrentDepartment();
 }
 
+
+void DepartmentView::on_btEdit_clicked()
+{
+    QModelIndex curIndex = IDataBase::getInstance().theDepartmentSelection->currentIndex();
+    emit goDepartmentEditView(curIndex.row());
+}
+
