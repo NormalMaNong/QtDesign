@@ -12,3 +12,15 @@ DoctorEditView::~DoctorEditView()
 {
     delete ui;
 }
+
+void DoctorEditView::on_btSave_clicked()
+{
+
+}
+
+
+void DoctorEditView::on_btCancel_clicked()
+{
+
+}
+

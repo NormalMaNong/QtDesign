@@ -122,6 +122,32 @@ void IDataBase::revertDepartmentEdit()
     departmentTabModle->revertAll();
 }
 
+bool IDataBase::initDoctorModel()
+{
+    doctorTabModle = new QSqlTableModel(this, database);
+    doctorTabModle->setTable("doctor");
+    doctorTabModle->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    doctorTabModle->setSort(doctorTabModle->fieldIndex("name"),Qt::AscendingOrder);
+    if(!(doctorTabModle->select()))
+        return false;
+    theDoctorSelection = new QItemSelectionModel(doctorTabModle);
+    return true;
+}
+
+int IDataBase::addNewDoctor()
+{
+    doctorTabModle->insertRow(doctorTabModle->rowCount(),QModelIndex());
+    QModelIndex curIndex = doctorTabModle->index(doctorTabModle->rowCount() - 1,1);
+
+    int curRecNO = curIndex.row();
+    QSqlRecord curRec = doctorTabModle->record(curRecNO);
+    curRec.setValue("ID",QUuid::createUuid().toString(QUuid::WithBraces));
+    curRec.setValue("EMPLOYEENO",QUuid::createUuid().toString(QUuid::WithBraces));
+    doctorTabModle->setRecord(curRecNO,curRec);
+
+    return curIndex.row();
+}
+
 QString IDataBase::userLogin(QString userName, QString password)
 {
     QSqlQuery query;
