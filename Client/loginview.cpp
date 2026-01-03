@@ -22,12 +22,22 @@ LoginView::~LoginView()
 void LoginView::on_btSignUp_clicked()
 {
     type = "登录";
-    m_chatClient->connectToServer(QHostAddress("127.0.0.1"), 1967);
-    if(loginFlag){
-        emit loginSuccess();
-        m_chatClient->disconnectFromHost();
-        loginFlag = false;
+
+    if (ui->inputUserName->text().isEmpty()) {
+        QMessageBox::warning(this, "输入错误", "用户名不能为空！");
+        return;
     }
+    if (ui->inputUserPassword->text().isEmpty()) {
+        QMessageBox::warning(this, "输入错误", "密码不能为空！");
+        return;
+    }
+
+    m_chatClient->connectToServer(QHostAddress("127.0.0.1"), 1967);
+    // if(loginFlag){
+    //     emit loginSuccess();
+    //     m_chatClient->disconnectFromHost();
+    //     loginFlag = false;
+    // }
 }
 
 void LoginView::connectToServer()
@@ -42,6 +52,12 @@ void LoginView::jsonReceived(const QJsonObject &docObj)
         return;
     if(typeVal.toString().compare("登录成功") == 0){
         loginFlag = true;
+        emit loginSuccess();
+        loginFlag = false;
+    }else if(typeVal.toString().compare("登录失败") == 0){
+        const QJsonValue reasonVal = docObj.value("reason");
+        QString errorMsg = reasonVal.isString() ? reasonVal.toString() : "未知错误";
+        QMessageBox::warning(this, "登录失败", errorMsg);
     }else if(typeVal.toString().compare("注册成功") == 0){
         const QJsonValue usernameVal = docObj.value("username");
         if(usernameVal.isNull() || !usernameVal.isString())
