@@ -102,9 +102,49 @@ bool IDataBase::searchDepartment(QString filter)
 bool IDataBase::deleteCurrentDepartment()
 {
     QModelIndex curIndex = theDepartmentSelection->currentIndex();
-    departmentTabModle->removeRow(curIndex.row());
-    departmentTabModle->submitAll();
+
+    // 获取要删除的科室ID
+    QSqlRecord curRec = departmentTabModle->record(curIndex.row());
+    QString deptId = curRec.value("ID").toString();
+    QString deptName = curRec.value("NAME").toString();
+
+    if (deptName == "待分配科室") {
+        qDebug() << "不能删除待分配科室！";
+        return false;
+    }
+
+    // 查找待分配科室的ID
+    QString defaultDeptId = getDefaultDepartmentId();
+
+
+    QSqlQuery query(database);
+    query.prepare("UPDATE doctor SET DEPARTMENT_ID = :DEFAULT_ID WHERE DEPARTMENT_ID = :DEPT_ID");
+    query.bindValue(":DEFAULT_ID", defaultDeptId);
+    query.bindValue(":DEPT_ID", deptId);
+
+    if (!query.exec()) {
+        qDebug() << "更新医生数据失败：" << query.lastError().text();
+        return false;
+    }
+
+    if (!departmentTabModle->removeRow(curIndex.row())) {
+        qDebug() << "删除科室失败";
+        return false;
+    }
+
+    if (!departmentTabModle->submitAll()) {
+        qDebug() << "提交删除失败：" << departmentTabModle->lastError().text();
+        departmentTabModle->revertAll();
+        return false;
+    }
+
+    if (doctorTabModle) {
+        doctorTabModle->select();
+    }
+
     departmentTabModle->select();
+
+    return true;
 }
 
 bool IDataBase::submitDepartmentEdit()
@@ -120,6 +160,18 @@ bool IDataBase::submitDepartmentEdit()
 void IDataBase::revertDepartmentEdit()
 {
     departmentTabModle->revertAll();
+}
+
+QString IDataBase::getDefaultDepartmentId()
+{
+    QSqlQuery query(database);
+    query.prepare("SELECT ID FROM department WHERE NAME = '待分配科室'");
+
+    if (query.exec() && query.next()) {
+        return query.value(0).toString();
+    }
+
+    return QString(); // 返回空字符串表示没找到
 }
 
 bool IDataBase::initDoctorModel()

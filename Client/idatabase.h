@@ -39,6 +39,7 @@ public:
     bool deleteCurrentDepartment();
     bool submitDepartmentEdit();
     void revertDepartmentEdit();
+    QString getDefaultDepartmentId();
     bool initDoctorModel();
     int addNewDoctor();
     bool searchDoctor(QString filter);

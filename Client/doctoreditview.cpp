@@ -40,6 +40,7 @@ void DoctorEditView::initDepartmentComboBox()
     deptModel = new QSqlTableModel(this, IDataBase::getInstance().database);
     deptModel->setTable("department");
     deptModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    deptModel->setFilter("NAME != '待分配科室'");
     deptModel->select();
 
     ui->dbEditDepartmentID->setModel(deptModel);
@@ -55,6 +56,7 @@ void DoctorEditView::setCurrentDepartment(int index)
     QSqlTableModel *doctorModel = IDataBase::getInstance().doctorTabModle;
     QModelIndex idx = doctorModel->index(index, doctorModel->fieldIndex("DEPARTMENT_ID"));
     QString currentDeptId = doctorModel->data(idx).toString();
+
     bool flag = false;//判断是否找到科室
 
     if (!currentDeptId.isEmpty()) {
