@@ -12,7 +12,7 @@ class DepartmentEditView : public QWidget
     Q_OBJECT
 
 public:
-    explicit DepartmentEditView(QWidget *parent = nullptr);
+    explicit DepartmentEditView(QWidget *parent = nullptr, int index = 0);
     ~DepartmentEditView();
 
 private:

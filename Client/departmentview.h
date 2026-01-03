@@ -19,7 +19,7 @@ private:
     Ui::DepartmentView *ui;
 
 signals:
-    void goDepartmentEditView();
+    void goDepartmentEditView(int idx);
 
 private slots:
     void on_btAdd_clicked();

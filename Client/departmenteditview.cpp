@@ -1,7 +1,7 @@
 #include "departmenteditview.h"
 #include "ui_departmenteditview.h"
 
-DepartmentEditView::DepartmentEditView(QWidget *parent)
+DepartmentEditView::DepartmentEditView(QWidget *parent, int index)
     : QWidget(parent)
     , ui(new Ui::DepartmentEditView)
 {

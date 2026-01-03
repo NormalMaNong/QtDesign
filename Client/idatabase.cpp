@@ -68,6 +68,31 @@ void IDataBase::revertPatientEdit()
     patientTabModle->revertAll();
 }
 
+bool IDataBase::initDepartmentModel()
+{
+    departmentTabModle = new QSqlTableModel(this, database);
+    departmentTabModle->setTable("department");
+    departmentTabModle->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    departmentTabModle->setSort(departmentTabModle->fieldIndex("name"),Qt::AscendingOrder);
+    if(!(departmentTabModle->select()))
+        return false;
+    theDepartmentSelection = new QItemSelectionModel(departmentTabModle);
+    return true;
+}
+
+int IDataBase::addNewDepartment()
+{
+    departmentTabModle->insertRow(departmentTabModle->rowCount(),QModelIndex());
+    QModelIndex curIndex = departmentTabModle->index(departmentTabModle->rowCount() - 1,1);
+
+    int curRecNO = curIndex.row();
+    QSqlRecord curRec = departmentTabModle->record(curRecNO);
+    curRec.setValue("ID",QUuid::createUuid().toString(QUuid::WithBraces));
+    departmentTabModle->setRecord(curRecNO,curRec);
+
+    return curIndex.row();
+}
+
 QString IDataBase::userLogin(QString userName, QString password)
 {
     QSqlQuery query;

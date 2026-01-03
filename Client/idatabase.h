@@ -35,9 +35,25 @@ public:
     bool deleteCurrentPatient();
     bool submitPatientEdit();
     void revertPatientEdit();
+    bool initDepartmentModel();
+    int addNewDepartment();
+    bool searchDepartment(QString filter);
+    bool deleteCurrentDepartment();
+    bool submitDepartmentEdit();
+    void revertDepartmentEdit();
+    bool initDoctorModel();
+    int addNewDoctor();
+    bool searchDoctor(QString filter);
+    bool deleteCurrentDoctor();
+    bool submitDoctorEdit();
+    void revertDoctorEdit();
 
     QSqlTableModel *patientTabModle;
     QItemSelectionModel *thePatientSelection;
+    QSqlTableModel *departmentTabModle;
+    QItemSelectionModel *theDepartmentSelection;
+    QSqlTableModel *doctorTabModle;
+    QItemSelectionModel *theDoctorSelection;
 signals:
 
 private:

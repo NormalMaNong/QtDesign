@@ -39,19 +39,19 @@ void MasterView::goDoctorView()
 {
     doctorView = new DoctorView(this);
     pushWidgetToStackView(doctorView);
-    connect(doctorView, SIGNAL(goDoctorEditView()), this, SLOT(goDoctorEditView()));
+    connect(doctorView, SIGNAL(goDoctorEditView(int)), this, SLOT(goDoctorEditView(int)));
 }
 
-void MasterView::goDoctorEditView()
+void MasterView::goDoctorEditView(int rowNo)
 {
-    doctorEditView = new DoctorEditView(this);
+    doctorEditView = new DoctorEditView(this, rowNo);
     pushWidgetToStackView(doctorEditView);
     connect(doctorEditView, SIGNAL(goPreviousView()), this, SLOT(goPreviousView()));
 }
 
-void MasterView::goDepartmentEditView()
+void MasterView::goDepartmentEditView(int rowNo)
 {
-    departmentEditView = new DepartmentEditView(this);
+    departmentEditView = new DepartmentEditView(this, rowNo);
     pushWidgetToStackView(departmentEditView);
     connect(departmentEditView, SIGNAL(goPreviousView()), this, SLOT(goPreviousView()));
 }
@@ -60,7 +60,7 @@ void MasterView::goDepartmentView()
 {
     departmentView = new DepartmentView(this);
     pushWidgetToStackView(departmentView);
-    connect(departmentView, SIGNAL(goDepartmentEditView()), this, SLOT(goDepartmentEditView()));
+    connect(departmentView, SIGNAL(goDepartmentEditView(int)), this, SLOT(goDepartmentEditView(int)));
 }
 
 void MasterView::goPatientView()
