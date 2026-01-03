@@ -48,9 +48,17 @@ bool IDataBase::searchPatient(QString filter)
 bool IDataBase::deleteCurrentPatient()
 {
     QModelIndex curIndex = thePatientSelection->currentIndex();
-    patientTabModle->removeRow(curIndex.row());
-    patientTabModle->submitAll();
+    if(!patientTabModle->removeRow(curIndex.row())){
+        qDebug() << "删除患者失败";
+        return false;
+    }
+    if(!patientTabModle->submitAll()){
+        qDebug() << "提交删除失败：" << patientTabModle->lastError().text();
+        patientTabModle->revertAll();
+        return false;
+    }
     patientTabModle->select();
+    return true;
 }
 
 bool IDataBase::submitPatientEdit()
@@ -209,9 +217,17 @@ bool IDataBase::searchDoctor(QString filter)
 bool IDataBase::deleteCurrentDoctor()
 {
     QModelIndex curIndex = theDoctorSelection->currentIndex();
-    doctorTabModle->removeRow(curIndex.row());
-    doctorTabModle->submitAll();
+    if(!doctorTabModle->removeRow(curIndex.row())){
+        qDebug() << "删除医生失败";
+        return false;
+    }
+    if(!doctorTabModle->submitAll()){
+        qDebug() << "提交删除失败：" << doctorTabModle->lastError().text();
+        doctorTabModle->revertAll();
+        return false;
+    }
     doctorTabModle->select();
+    return true;
 }
 
 bool IDataBase::submitDoctorEdit()

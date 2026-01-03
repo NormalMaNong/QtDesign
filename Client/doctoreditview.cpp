@@ -57,22 +57,17 @@ void DoctorEditView::setCurrentDepartment(int index)
     QModelIndex idx = doctorModel->index(index, doctorModel->fieldIndex("DEPARTMENT_ID"));
     QString currentDeptId = doctorModel->data(idx).toString();
 
-    bool flag = false;//判断是否找到科室
-
     if (!currentDeptId.isEmpty()) {
         // 在科室模型中查找对应的科室ID
         for (int i = 0; i < deptModel->rowCount(); ++i) {
             QString deptId = deptModel->record(i).value("ID").toString();
             if (deptId == currentDeptId) {
                 ui->dbEditDepartmentID->setCurrentIndex(i);
-                flag = true;
                 break;
             }
         }
     }
-    if(!flag){
-        QMessageBox::warning(this, "警告", "找不到可用科室，请先去添加科室！");
-    }
+
 }
 
 void DoctorEditView::on_btSave_clicked()
