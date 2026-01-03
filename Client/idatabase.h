@@ -25,8 +25,6 @@ private:
     IDataBase(IDataBase const&)               = delete;
     void operator=(IDataBase const&)  = delete;
 
-    QSqlDatabase database;
-
     void ininDataBase();
 public:
     bool initPatientModel();
@@ -54,6 +52,8 @@ public:
     QItemSelectionModel *theDepartmentSelection;
     QSqlTableModel *doctorTabModle;
     QItemSelectionModel *theDoctorSelection;
+
+    QSqlDatabase database;
 signals:
 
 private:

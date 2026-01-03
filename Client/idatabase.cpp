@@ -162,6 +162,21 @@ bool IDataBase::deleteCurrentDoctor()
     doctorTabModle->select();
 }
 
+bool IDataBase::submitDoctorEdit()
+{
+    bool success = doctorTabModle->submitAll();
+    if (!success) {
+        qDebug() << "提交失败：" << database.lastError().text();
+        qDebug() << "模型错误：" << doctorTabModle->lastError().text();
+    }
+    return success;
+}
+
+void IDataBase::revertDoctorEdit()
+{
+    doctorTabModle->revertAll();
+}
+
 QString IDataBase::userLogin(QString userName, QString password)
 {
     QSqlQuery query;

@@ -49,36 +49,10 @@
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <item>
         <layout class="QGridLayout" name="gridLayout_2">
-         <item row="2" column="1">
-          <widget class="QLineEdit" name="dbEditEmployeeID"/>
-         </item>
          <item row="2" column="0">
           <widget class="QLabel" name="label_11">
            <property name="text">
             <string>工号:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLineEdit" name="dbEditName"/>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="dbEditID"/>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_16">
-           <property name="text">
-            <string>诊室号:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QLineEdit" name="dbEditDepartmentID"/>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_18">
-           <property name="text">
-            <string>姓名:</string>
            </property>
           </widget>
          </item>
@@ -88,6 +62,32 @@
             <string>ID:</string>
            </property>
           </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="dbEditEmployeeID"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_18">
+           <property name="text">
+            <string>姓名:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="dbEditName"/>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="dbEditID"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_16">
+           <property name="text">
+            <string>诊室号:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QComboBox" name="dbEditDepartmentID"/>
          </item>
         </layout>
        </item>

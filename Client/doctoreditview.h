@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QDataWidgetMapper>
+#include <QSqlTableModel>
 
 namespace Ui {
 class DoctorEditView;
@@ -19,6 +20,10 @@ public:
 private:
     Ui::DoctorEditView *ui;
     QDataWidgetMapper *dataMapper;
+    QSqlTableModel *deptModel;
+
+    void initDepartmentComboBox();
+    void setCurrentDepartment(int index);
 
 signals:
     void goPreviousView();
