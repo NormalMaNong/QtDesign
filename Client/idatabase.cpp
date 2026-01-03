@@ -93,6 +93,20 @@ int IDataBase::addNewDepartment()
     return curIndex.row();
 }
 
+bool IDataBase::searchDepartment(QString filter)
+{
+    departmentTabModle->setFilter(filter);
+    return departmentTabModle->select();
+}
+
+bool IDataBase::deleteCurrentDepartment()
+{
+    QModelIndex curIndex = theDepartmentSelection->currentIndex();
+    departmentTabModle->removeRow(curIndex.row());
+    departmentTabModle->submitAll();
+    departmentTabModle->select();
+}
+
 QString IDataBase::userLogin(QString userName, QString password)
 {
     QSqlQuery query;

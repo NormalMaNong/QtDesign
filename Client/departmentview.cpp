@@ -32,3 +32,16 @@ void DepartmentView::on_btAdd_clicked()
     emit goDepartmentEditView(currow);
 }
 
+
+void DepartmentView::on_btSearch_clicked()
+{
+    QString filter = QString("name like '%%1%'").arg(ui->txtSearch->text());
+    IDataBase::getInstance().searchDepartment(filter);
+}
+
+
+void DepartmentView::on_btDelete_clicked()
+{
+    IDataBase::getInstance().deleteCurrentDepartment();
+}
+
