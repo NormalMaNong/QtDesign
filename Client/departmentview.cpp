@@ -49,6 +49,14 @@ void DepartmentView::on_btDelete_clicked()
 void DepartmentView::on_btEdit_clicked()
 {
     QModelIndex curIndex = IDataBase::getInstance().theDepartmentSelection->currentIndex();
+    QSqlRecord curRec = IDataBase::getInstance().departmentTabModle->record(curIndex.row());
+    QString deptId = curRec.value("ID").toString();
+    QString deptName = curRec.value("NAME").toString();
+
+    if (deptName == "待分配科室") {
+        qDebug() << "不能修改待分配科室！";
+        return;
+    }
     emit goDepartmentEditView(curIndex.row());
 }
 
